@@ -24,7 +24,7 @@ public class CheckoutTest extends AbstractTest {
         storePage.addFirstProductToBasket();
         storePage.navigateToCart();
 
-        Assert.assertEquals(1, new CheckoutPage(getWebDriver()).basketCount());
+        Assert.assertEquals(new CheckoutPage(getWebDriver()).basketCount(), 1);
     }
 
 }

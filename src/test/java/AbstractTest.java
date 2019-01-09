@@ -13,6 +13,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by grago on 27.09.17.
@@ -77,6 +79,9 @@ public class AbstractTest {
 
     public void setup(String deviceType, String platformName, String platformVersion, String deviceName,
                       String browserName, Method method) throws MalformedURLException {
+
+        // Silence Selenium logger
+        Logger.getLogger("org.openqa.selenium.remote").setLevel(Level.OFF);
 
         String testName = method.getName();
 
