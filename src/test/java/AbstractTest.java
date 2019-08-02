@@ -31,41 +31,14 @@ public class AbstractTest {
     private String username = System.getenv("SAUCE_USERNAME");
     private String accesskey = System.getenv("SAUCE_ACCESS_KEY");
     private String rdcApiKey = System.getenv("RDC_API_KEY");
+    private String cacheId = System.getenv("RDC_CACHE_ID");
     private String extendedDebugging = System.getenv("EXT_DEBUGGING");
     private SauceREST sauceRESTClient = new SauceREST(username, accesskey);
 
     @DataProvider(name = "hardCodedBrowsers", parallel = true)
     public static Object[][] sauceBrowserDataProvider(Method testMethod) {
         return new Object[][]{
-
-                // Emulators
-                new Object[]{"virtual", "Android", "7.1", "Android GoogleAPI Emulator", "chrome"},
-                new Object[]{"virtual", "Android", "7.1", "Samsung Galaxy S9 HD GoogleAPI Emulator", "chrome"},
-                new Object[]{"virtual", "Android", "7.1", "Samsung Galaxy S8 HD GoogleAPI Emulator", "chrome"},
-                new Object[]{"virtual", "Android", "7.1", "Samsung Galaxy S7 HD GoogleAPI Emulator", "chrome"},
-                new Object[]{"virtual", "Android", "7.1", "Samsung Galaxy S9 Plus HD GoogleAPI Emulator", "chrome"},
-                new Object[]{"virtual", "Android", "7.1", "Samsung Galaxy S8 Plus HD GoogleAPI Emulator", "chrome"},
-                new Object[]{"virtual", "Android", "7.1", "Samsung Galaxy S7 Edge HD GoogleAPI Emulator", "chrome"},
-                new Object[]{"virtual", "Android", "7.1", "Samsung Galaxy S6 GoogleAPI Emulator", "chrome"},
-                new Object[]{"virtual", "Android", "7.1", "Google Pixel GoogleAPI Emulator", "chrome"},
-                new Object[]{"virtual", "Android", "7.0", "Android GoogleAPI Emulator", "chrome"},
-                new Object[]{"virtual", "Android", "7.0", "Samsung Galaxy S9 HD GoogleAPI Emulator", "chrome"},
-                new Object[]{"virtual", "Android", "7.0", "Samsung Galaxy S8 HD GoogleAPI Emulator", "chrome"},
-                new Object[]{"virtual", "Android", "7.0", "Samsung Galaxy S7 HD GoogleAPI Emulator", "chrome"},
-                new Object[]{"virtual", "Android", "7.0", "Samsung Galaxy S9 Plus HD GoogleAPI Emulator", "chrome"},
-                new Object[]{"virtual", "Android", "7.0", "Samsung Galaxy S8 Plus HD GoogleAPI Emulator", "chrome"},
-                new Object[]{"virtual", "Android", "7.0", "Samsung Galaxy S7 Edge HD GoogleAPI Emulator", "chrome"},
-                new Object[]{"virtual", "Android", "7.0", "Samsung Galaxy S6 GoogleAPI Emulator", "chrome"},
-                new Object[]{"virtual", "Android", "7.0", "Google Pixel GoogleAPI Emulator", "chrome"},
-
-                // Real devices
-                new Object[]{"real", "Android", "5", "", ""},
-                new Object[]{"real", "Android", "6", "", ""},
                 new Object[]{"real", "Android", "7.0", "", ""},
-                new Object[]{"real", "Android", "7.1", "", ""},
-                new Object[]{"real", "Android", "8", "", ""},
-                new Object[]{"real", "Android", "9", "", ""}
-
         };
     }
 
@@ -94,9 +67,11 @@ public class AbstractTest {
 
             capabilities.setCapability("testobject_api_key", rdcApiKey);
             capabilities.setCapability("phoneOnly", "true");
-            if (!deviceName.isEmpty()) {
-                capabilities.setCapability("deviceName", deviceName);
-            }
+            capabilities.setCapability("cacheId", cacheId);
+//            if (!deviceName.isEmpty()) {
+//                capabilities.setCapability("deviceName", deviceName);
+//            }
+            capabilities.setCapability("testobject_device", System.getenv("TESTOBJECT_DEVICE"));
             gridEndpoint = "https://eu1.appium.testobject.com/wd/hub";
 
         } else if (deviceType.equals("virtual")) {

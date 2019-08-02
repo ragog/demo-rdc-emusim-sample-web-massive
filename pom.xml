@@ -25,7 +25,7 @@
                 <configuration>
                     <parallel>methods</parallel>
                     <!--<forkCount>100</forkCount>-->
-                    <threadCount>1000</threadCount>
+                    <threadCount>1</threadCount>
                     <redirectTestOutputToFile>false</redirectTestOutputToFile>
                 </configuration>
             </plugin>
