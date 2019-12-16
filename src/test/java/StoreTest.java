@@ -11,9 +11,9 @@ public class StoreTest extends AbstractTest {
 
 //    @Test(dataProvider = "hardCodedBrowsers")
 //    public void navigateToItem(String deviceType, String platformName, String platformVersion,
-//                               String deviceName, String browserName, Method method) throws MalformedURLException {
+//                               String deviceName, String browserName, String cacheId, Method method) throws MalformedURLException {
 //
-//        this.setup(deviceType, platformName, platformVersion, deviceName, browserName, method);
+//        this.setup(deviceType, platformName, platformVersion, deviceName, browserName, cacheId, method);
 //
 //        LoginPage loginPage = new LoginPage(getWebDriver());
 //        loginPage.load();

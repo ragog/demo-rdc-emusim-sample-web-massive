@@ -39,7 +39,9 @@ public class AbstractTest {
         return new Object[][]{
 
                 // Real devices
-                new Object[]{"real", "Android", "7", "", ""}
+                new Object[]{"real", "Android", "7", "", "", "cache1"},
+                new Object[]{"real", "Android", "8", "", "", "cache2"},
+                new Object[]{"real", "Android", "9", "", "", "cache3"}
 
         };
     }
@@ -53,7 +55,7 @@ public class AbstractTest {
     }
 
     public void setup(String deviceType, String platformName, String platformVersion, String deviceName,
-                      String browserName, Method method) throws MalformedURLException {
+                      String browserName, String cacheId, Method method) throws MalformedURLException {
 
         // Silence Selenium logger
         Logger.getLogger("org.openqa.selenium.remote").setLevel(Level.OFF);
@@ -88,10 +90,9 @@ public class AbstractTest {
 
         }
 
-        capabilities.setCapability("cacheId", System.getenv("RDC_CACHE_ID"));
+        capabilities.setCapability("cacheId", cacheId);
         capabilities.setCapability("platformName", platformName);
         capabilities.setCapability("platformVersion", platformVersion);
-        capabilities.setCapability("phoneOnly", "true");
         capabilities.setCapability("name", testName);
 
         capabilities.setCapability("uuid", testId);
